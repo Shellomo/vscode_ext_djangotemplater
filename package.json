@@ -1,6 +1,6 @@
 {
-  "name": "djangotemplater",
-  "displayName": "DjangoTemplater",
+  "name": "django-template-intelligence",
+  "displayName": "Django Template Intelligence",
   "description": "Enhanced Django template language support with intelligent syntax highlighting and auto-completion",
   "version": "1.0.0",
   "publisher": "Shellomo",

@@ -1,4 +1,4 @@
-# DjangoTemplater - VS Code Extension
+# Django Template Intelligence - VS Code Extension
 
 Enhanced Django template support for Visual Studio Code, making template development faster and more intuitive.
 
