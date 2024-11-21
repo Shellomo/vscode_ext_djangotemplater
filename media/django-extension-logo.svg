@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Background -->
+  <rect width="128" height="128" rx="20" fill="#092E20"/>
+  
+  <!-- Django Template Tag -->
+  <path d="M24 44 L44 44 L44 84 L84 84 L84 104 L24 104 Z" fill="#44B78B" fill-opacity="0.8"/>
+  <path d="M44 24 L104 24 L104 84 L84 84 L84 44 L44 44 Z" fill="#44B78B"/>
+  
+  <!-- Brackets -->
+  <path d="M54 54 L64 44 L74 54" stroke="white" stroke-width="4" fill="none"/>
+  <path d="M54 74 L64 84 L74 74" stroke="white" stroke-width="4" fill="none"/>
+  
+  <!-- Code Lines -->
+  <line x1="44" y1="64" x2="84" y2="64" stroke="white" stroke-width="2" stroke-opacity="0.5"/>
+  <line x1="44" y1="74" x2="84" y2="74" stroke="white" stroke-width="2" stroke-opacity="0.5"/>
+</svg>

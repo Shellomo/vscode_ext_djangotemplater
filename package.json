@@ -2,8 +2,9 @@
   "name": "django-template-intelligence",
   "displayName": "Django Template Intelligence",
   "description": "Enhanced Django template language support with intelligent syntax highlighting and auto-completion",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "Shellomo",
+  "icon": "media/django-extension-logo.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/Shellomo/vscode_ext_djangotemplater"
