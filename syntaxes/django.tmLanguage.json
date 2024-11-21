@@ -1,0 +1,50 @@
+{
+  "name": "Django Template",
+  "scopeName": "text.html.django",
+  "patterns": [
+    {
+      "include": "#django-templates"
+    },
+    {
+      "include": "text.html.basic"
+    }
+  ],
+  "repository": {
+    "django-templates": {
+      "patterns": [
+        {
+          "name": "comment.block.django",
+          "begin": "{#",
+          "end": "#}",
+          "patterns": []
+        },
+        {
+          "name": "meta.tag.template.django",
+          "begin": "{%",
+          "end": "%}",
+          "patterns": [
+            {
+              "name": "keyword.control.django",
+              "match": "\\b(if|else|elif|endif|for|endfor|block|endblock|extends|include|with|endwith)\\b"
+            }
+          ]
+        },
+        {
+          "name": "meta.tag.variable.django",
+          "begin": "{{",
+          "end": "}}",
+          "patterns": [
+            {
+              "name": "variable.other.django",
+              "match": "[a-zA-Z_][a-zA-Z0-9_]*"
+            },
+            {
+              "name": "keyword.operator.django",
+              "match": "\\|"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

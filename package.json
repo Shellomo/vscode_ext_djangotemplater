@@ -1,0 +1,80 @@
+{
+  "name": "djangotemplater",
+  "displayName": "DjangoTemplater",
+  "description": "Enhanced Django template language support with intelligent syntax highlighting and auto-completion",
+  "version": "1.0.0",
+  "publisher": "Shellomo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Shellomo/vscode_ext_djangotemplater"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Formatters"
+  ],
+  "keywords": [
+    "django",
+    "templates",
+    "web development",
+    "python",
+    "html"
+  ],
+  "activationEvents": [
+    "onLanguage:django-html"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [{
+      "id": "django-html",
+      "aliases": ["Django Template", "django"],
+      "extensions": [".html", ".django-html"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "django-html",
+      "scopeName": "text.html.django",
+      "path": "./syntaxes/django.tmLanguage.json"
+    }],
+    "snippets": [{
+      "language": "django-html",
+      "path": "./snippets/django.json"
+    }],
+    "configuration": {
+      "title": "DjangoTemplater",
+      "properties": {
+        "djangotemplater.formatOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Format Django templates on save"
+        },
+        "djangotemplater.validateOnType": {
+          "type": "boolean",
+          "default": true,
+          "description": "Validate template syntax while typing"
+        },
+        "djangotemplater.customTags": {
+          "type": "array",
+          "default": [],
+          "description": "List of custom template tags"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^16.0.0",
+    "typescript": "^5.0.0",
+    "vsce": "^2.0.0"
+  }
+}
