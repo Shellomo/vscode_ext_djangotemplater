@@ -2,7 +2,7 @@
   "name": "django-template-intelligence",
   "displayName": "Django Template Intelligence",
   "description": "Enhanced Django template language support with intelligent syntax highlighting and auto-completion",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "Shellomo",
   "icon": "media/django-extension-logo.png",
   "repository": {
@@ -71,6 +71,9 @@
     "watch": "tsc -watch -p ./",
     "package": "vsce package",
     "test": "node ./out/test/runTest.js"
+  },
+  "dependencies": {
+    "@vscode/extension-telemetry": "^0.9.8"
   },
   "devDependencies": {
     "@types/vscode": "^1.85.0",

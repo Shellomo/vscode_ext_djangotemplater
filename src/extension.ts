@@ -1,7 +1,9 @@
 import * as vscode from 'vscode';
+import { initializeTelemetryReporter, TelemetryLog } from './telemetry';
 
 export function activate(context: vscode.ExtensionContext) {
-    console.log('DjangoTemplater is now active!');
+    initializeTelemetryReporter(context);
+    TelemetryLog('info', 'Extension activated');
 
     // Register completions provider
     const provider = vscode.languages.registerCompletionItemProvider('django-html', {
@@ -26,4 +28,6 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(provider);
 }
 
-export function deactivate() {}
+export function deactivate() {
+    TelemetryLog('info', 'Extension deactivated');
+}
