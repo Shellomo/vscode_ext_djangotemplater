@@ -2,7 +2,7 @@
   "name": "django-template-intelligence",
   "displayName": "Django Template Intelligence",
   "description": "Comprehensive Django template support with intelligent completions, snippets, documentation, and template inheritance visualization",
-  "version": "1.1.0",
+  "version": "1.1.13",
   "publisher": "Shellomo",
   "icon": "media/django-extension-logo.png",
   "repository": {
