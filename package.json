@@ -1,8 +1,8 @@
 {
   "name": "django-template-intelligence",
   "displayName": "Django Template Intelligence",
-  "description": "Enhanced Django template language support with intelligent syntax highlighting and auto-completion",
-  "version": "1.0.2",
+  "description": "Comprehensive Django template support with intelligent completions, snippets, documentation, and template inheritance visualization",
+  "version": "1.1.0",
   "publisher": "Shellomo",
   "icon": "media/django-extension-logo.png",
   "repository": {
@@ -15,52 +15,153 @@
   "categories": [
     "Programming Languages",
     "Snippets",
-    "Formatters"
+    "Formatters",
+    "IntelliSense",
+    "Other"
   ],
   "keywords": [
     "django",
     "templates",
     "web development",
     "python",
-    "html"
+    "html",
+    "django-template",
+    "template inheritance",
+    "template tags",
+    "template filters",
+    "django template language"
   ],
   "activationEvents": [
-    "onLanguage:django-html"
+    "onLanguage:django-html",
+    "onLanguage:html",
+    "workspaceContains:**/*.html"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "languages": [{
       "id": "django-html",
       "aliases": ["Django Template", "django"],
-      "extensions": [".html", ".django-html"],
+      "extensions": [".html", ".django-html", ".djhtml", ".htm"],
       "configuration": "./language-configuration.json"
     }],
     "grammars": [{
       "language": "django-html",
       "scopeName": "text.html.django",
-      "path": "./syntaxes/django.tmLanguage.json"
+      "path": "./syntaxes/django.tmLanguage.json",
+      "embeddedLanguages": {
+        "source.python": "python",
+        "source.css": "css",
+        "source.js": "javascript"
+      }
     }],
     "snippets": [{
       "language": "django-html",
       "path": "./snippets/django.json"
     }],
+    "commands": [
+      {
+        "command": "django-template-intelligence.showTemplateHierarchy",
+        "title": "Django: Show Template Hierarchy",
+        "category": "Django Template"
+      },
+      {
+        "command": "django-template-intelligence.insertTag",
+        "title": "Django: Insert Template Tag",
+        "category": "Django Template"
+      },
+      {
+        "command": "django-template-intelligence.insertFilter",
+        "title": "Django: Insert Template Filter",
+        "category": "Django Template"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "django-template-intelligence.insertTag",
+        "key": "ctrl+shift+t",
+        "mac": "cmd+shift+t",
+        "when": "editorTextFocus && editorLangId == django-html"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorLangId == django-html",
+          "command": "django-template-intelligence.insertTag",
+          "group": "1_modification"
+        },
+        {
+          "when": "editorLangId == django-html",
+          "command": "django-template-intelligence.insertFilter",
+          "group": "1_modification"
+        }
+      ]
+    },
     "configuration": {
-      "title": "DjangoTemplater",
+      "title": "Django Template Intelligence",
       "properties": {
-        "djangotemplater.formatOnSave": {
+        "djangoTemplates.formatting.enabled": {
           "type": "boolean",
           "default": true,
-          "description": "Format Django templates on save"
+          "description": "Enable/disable automatic formatting of Django templates"
         },
-        "djangotemplater.validateOnType": {
+        "djangoTemplates.formatting.formatOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Format Django templates automatically on save"
+        },
+        "djangoTemplates.validation.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable template syntax validation"
+        },
+        "djangoTemplates.validation.validateOnType": {
           "type": "boolean",
           "default": true,
           "description": "Validate template syntax while typing"
         },
-        "djangotemplater.customTags": {
+        "djangoTemplates.customTags": {
           "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the custom tag"
+              },
+              "snippet": {
+                "type": "string",
+                "description": "Snippet content for the tag"
+              },
+              "description": {
+                "type": "string",
+                "description": "Description of the tag"
+              }
+            }
+          },
           "default": [],
-          "description": "List of custom template tags"
+          "description": "Custom template tags configuration"
+        },
+        "djangoTemplates.customFilters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "List of custom template filters"
+        },
+        "djangoTemplates.hover.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable hover information for tags and filters"
+        },
+        "djangoTemplates.completion.triggerCharacters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": ["{", "%", "|"],
+          "description": "Characters that trigger completions"
         }
       }
     }
@@ -70,7 +171,9 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "package": "vsce package",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "lint": "eslint src --ext ts",
+    "pretest": "npm run compile && npm run lint"
   },
   "dependencies": {
     "@vscode/extension-telemetry": "^0.9.8"
@@ -78,6 +181,9 @@
   "devDependencies": {
     "@types/vscode": "^1.85.0",
     "@types/node": "^16.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
     "typescript": "^5.0.0",
     "vsce": "^2.0.0"
   }
